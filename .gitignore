@@ -1,0 +1,58 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv/
+ENV/
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# Data — arquivos CSV/ZIP não versionados (muito grandes)
+data/raw/*.csv
+data/raw/*.zip
+data/raw/*.xlsx
+data/processed/*.csv
+data/processed/*.parquet
+data/processed/*.pkl
+
+# Relatórios gerados
+reports/figures/*.png
+reports/figures/*.html
+reports/figures/*.svg
+
+# Ambiente
+.env
+.env.local
+*.env
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# DuckDB
+*.db
+*.duckdb
+
+# Logs
+*.log
+logs/
+
+# Pytest / Coverage
+.pytest_cache/
+htmlcov/
+.coverage
+coverage.xml
