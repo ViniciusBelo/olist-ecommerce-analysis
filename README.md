@@ -31,7 +31,7 @@ O objetivo não é só responder perguntas analíticas, mas demonstrar um fluxo 
 
 ## Principais Insights
 
-**O atraso na entrega derruba a nota — e o efeito é de limiar.** Pedidos entregues no prazo têm nota média 4,29; atrasados, 2,46. Mais da metade dos atrasados (57%) recebe nota 1 ou 2. Chegar adiantado quase não muda a nota, mas a partir de 4 dias de atraso a média cai para perto de 2.
+**O atraso na entrega derruba a nota — e o efeito é de limiar.** Pedidos entregues no prazo têm nota média 4,29; atrasados, 2,46. Chegar adiantado quase não muda a nota, mas a partir de 4 dias de atraso a média cai para perto de 2. Parte dessa queda, porém, é "o pedido ainda não chegou": dois terços dos clientes com pedido atrasado avaliaram antes de receber (nota média 1,84). Entre os que avaliaram depois de receber, a diferença para quem recebeu no prazo é de cerca de 0,6 ponto (3,69 × 4,29).
 
 ![Nota média por faixa de atraso](reports/figures/06_atraso_vs_nota.png)
 
