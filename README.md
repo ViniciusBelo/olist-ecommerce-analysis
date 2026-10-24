@@ -4,6 +4,7 @@
 [![Python](https://img.shields.io/badge/Python-3.11+-blue?logo=python)](https://www.python.org/)
 [![Pandas](https://img.shields.io/badge/Pandas-2.2-150458?logo=pandas)](https://pandas.pydata.org/)
 [![Plotly](https://img.shields.io/badge/Plotly-5.22-3F4F75?logo=plotly)](https://plotly.com/)
+[![DuckDB](https://img.shields.io/badge/SQL-DuckDB-FFF000?logo=duckdb)](https://duckdb.org/)
 [![Streamlit](https://img.shields.io/badge/Dashboard-Streamlit-FF4B4B?logo=streamlit)](https://streamlit.io/)
 [![Testes](https://github.com/ViniciusBelo/olist-ecommerce-analysis/actions/workflows/testes.yml/badge.svg)](https://github.com/ViniciusBelo/olist-ecommerce-analysis/actions/workflows/testes.yml)
 
@@ -97,7 +98,7 @@ Primeira passagem pelos dados: schema relacional dos 9 datasets, estatísticas d
 ETL completo — tipagem de datas, tratamento de nulos, feature engineering (dias de entrega, atraso, valor total) e merge de todas as tabelas numa fact table central.
 
 ### 3. Análise de Receita (`03_analise_receita.ipynb`)
-Evolução mensal do GMV, top categorias, ticket médio por método de pagamento e sazonalidade semanal.
+Evolução mensal do GMV, top categorias, ticket médio por método de pagamento e sazonalidade semanal. Inclui consultas SQL (DuckDB) com `LAG`, `RANK` e `SUM OVER` para crescimento mês a mês, ranking de categorias por trimestre e concentração da receita.
 
 ### 4. Análise de Clientes (`04_analise_clientes.ipynb`)
 Mapa de pedidos por estado, padrão de compra por hora/dia, taxa de recompra, LTV básico e novos clientes por mês.
@@ -167,6 +168,7 @@ pytest tests
 | Python 3.11 | Linguagem principal |
 | Pandas 2.2 / NumPy | Manipulação e transformação dos dados |
 | Plotly / Seaborn / Matplotlib | Visualizações interativas e estáticas |
+| DuckDB | Consultas SQL com window functions sobre os DataFrames |
 | Scikit-learn | K-Means para segmentação RFM |
 | SciPy | Testes estatísticos (Mann-Whitney, Spearman) |
 | Streamlit | Dashboard interativo |
