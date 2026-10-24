@@ -98,7 +98,7 @@ with aba_geral:
     mensal = pedidos.groupby("mes").agg(receita=("revenue", "sum"), pedidos=("order_id", "count")).reset_index()
     fig = px.area(mensal, x="mes", y="receita", title="Receita mensal",
                   labels={"mes": "", "receita": "Receita (R$)"}, color_discrete_sequence=[COLORS["primary"]])
-    fig.update_layout(plot_bgcolor="white", hovermode="x unified")
+    fig.update_layout(hovermode="x unified")
     st.plotly_chart(fig, use_container_width=True)
 
     col_a, col_b = st.columns(2)
@@ -108,7 +108,6 @@ with aba_geral:
     )
     fig = px.bar(categorias, x="revenue", y="main_category", orientation="h", title="Top 10 categorias por receita",
                  labels={"revenue": "Receita (R$)", "main_category": ""}, color_discrete_sequence=[COLORS["primary"]])
-    fig.update_layout(plot_bgcolor="white")
     col_a.plotly_chart(fig, use_container_width=True)
 
     pagamentos = pedidos["payment_type"].value_counts().reset_index()
@@ -137,15 +136,14 @@ with aba_clientes:
     colunas = st.columns(4)
     for col, seg in zip(colunas, ORDEM_SEGMENTOS):
         linha = perfil.loc[seg]
-        col.metric(seg, f"{linha['clientes']:,.0f}".replace(",", "."),
-                   f"{linha['% receita']:.1f}% da receita".replace(".", ","), delta_color="off")
+        col.metric(seg, f"{linha['clientes']:,.0f}".replace(",", ".") + " clientes")
+        col.caption(f"{linha['% receita']:.1f}% da receita".replace(".", ","))
 
     col_a, col_b = st.columns(2)
     comparacao = perfil[["% clientes", "% receita"]].reset_index().melt(id_vars="segment", var_name="medida", value_name="pct")
     fig = px.bar(comparacao, x="segment", y="pct", color="medida", barmode="group",
                  title="Peso de cada segmento", labels={"segment": "", "pct": "%", "medida": ""},
                  color_discrete_sequence=[COLORS["primary"], COLORS["accent"]])
-    fig.update_layout(plot_bgcolor="white")
     col_a.plotly_chart(fig, use_container_width=True)
 
     amostra = rfm.sample(5000, random_state=42)
@@ -153,7 +151,6 @@ with aba_clientes:
                      category_orders={"segment": ORDEM_SEGMENTOS}, color_discrete_map=CORES_SEGMENTOS,
                      title="Recência × valor (amostra de 5 mil clientes)",
                      labels={"recency": "Recência (dias)", "monetary": "Valor gasto (R$)", "segment": ""})
-    fig.update_layout(plot_bgcolor="white")
     col_b.plotly_chart(fig, use_container_width=True)
 
     st.dataframe(
@@ -183,7 +180,7 @@ with aba_entregas:
     fig = px.bar(por_faixa, x="faixa_atraso", y="mean", color="tipo", title="Nota média por faixa de atraso",
                  labels={"faixa_atraso": "", "mean": "Nota média", "tipo": "", "count": "Pedidos"},
                  hover_data={"count": True}, color_discrete_map={"No prazo": COLORS["primary"], "Atrasado": COLORS["success"]})
-    fig.update_layout(plot_bgcolor="white", yaxis_range=[0, 5])
+    fig.update_layout(yaxis_range=[0, 5])
     col_a.plotly_chart(fig, use_container_width=True)
 
     por_estado = (
@@ -197,7 +194,7 @@ with aba_entregas:
                  title="% entregue no prazo por estado", hover_data={"pedidos": True, "prazo": True},
                  labels={"no_prazo": "% no prazo", "customer_state": "", "prazo": "Prazo mediano (dias)"},
                  color="no_prazo", color_continuous_scale="RdYlGn", range_color=[75, 100])
-    fig.update_layout(plot_bgcolor="white", coloraxis_showscale=False, height=650)
+    fig.update_layout(coloraxis_showscale=False, height=650)
     col_b.plotly_chart(fig, use_container_width=True)
 
 # ── Vendedores ────────────────────────────────────────────────────────────────
@@ -217,7 +214,7 @@ with aba_vendedores:
                      color_continuous_scale="RdYlGn", hover_data={"seller_state": True, "receita": ":,.0f"},
                      title="Pontualidade × nota (tamanho = pedidos)",
                      labels={"taxa_no_prazo": "% no prazo", "nota_media": "Nota média", "seller_state": "UF"})
-    fig.update_layout(plot_bgcolor="white", xaxis_tickformat=".0%")
+    fig.update_layout(xaxis_tickformat=".0%")
     st.plotly_chart(fig, use_container_width=True)
 
     estados_vend = sorted(avaliados["seller_state"].dropna().unique())
