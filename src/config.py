@@ -32,8 +32,8 @@ PROCESSED_FILES = {
 }
 
 # ── Parâmetros de análise ─────────────────────────────────────────────────────
-# Data de referência para cálculo de RFM (último pedido + 1 dia)
-RFM_REFERENCE_DATE = "2018-10-18"
+# Data de referência para cálculo de RFM (último pedido entregue + 1 dia)
+RFM_REFERENCE_DATE = "2018-08-30"
 
 # Número de clusters para segmentação K-Means
 N_CLUSTERS_RFM = 4

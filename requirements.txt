@@ -1,6 +1,8 @@
 # Core
 pandas==2.2.2
 numpy==1.26.4
+pyarrow==24.0.0
+scipy==1.17.1
 
 # Visualização
 matplotlib==3.9.0
@@ -32,3 +34,6 @@ openpyxl==3.1.4
 black==24.4.2
 flake8==7.0.0
 isort==5.13.2
+
+# Testes
+pytest==8.2.2

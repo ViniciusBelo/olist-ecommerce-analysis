@@ -4,7 +4,7 @@ import pandas as pd
 import numpy as np
 from typing import Dict
 
-from src.config import PROCESSED_FILES
+from src.config import PROCESSED_FILES, ROOT_DIR
 
 
 # ── Colunas de data por dataset ───────────────────────────────────────────────
@@ -32,7 +32,7 @@ def cast_dates(df: pd.DataFrame, columns: list) -> pd.DataFrame:
 def clean_orders(df: pd.DataFrame) -> pd.DataFrame:
     df = cast_dates(df, DATE_COLUMNS["orders"])
     # Remove pedidos sem data de compra (impossível analisar)
-    df = df.dropna(subset=["order_purchase_timestamp"])
+    df = df.dropna(subset=["order_purchase_timestamp"]).copy()
     # Colunas de engenharia de tempo úteis
     df["purchase_year"] = df["order_purchase_timestamp"].dt.year
     df["purchase_month"] = df["order_purchase_timestamp"].dt.month
@@ -157,7 +157,7 @@ def save_processed(df: pd.DataFrame, name: str) -> None:
     path = PROCESSED_FILES[name]
     path.parent.mkdir(parents=True, exist_ok=True)
     df.to_parquet(path, index=False)
-    print(f"  ✓ Salvo: {path} ({df.shape[0]:,} linhas)")
+    print(f"  ✓ Salvo: {path.relative_to(ROOT_DIR).as_posix()} ({df.shape[0]:,} linhas)")
 
 
 def load_processed(name: str) -> pd.DataFrame:
