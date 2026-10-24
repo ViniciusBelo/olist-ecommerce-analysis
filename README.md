@@ -1,5 +1,5 @@
 # Análise do E-commerce Brasileiro com Python
-### Explorando 100 mil pedidos da Olist | 2016–2018
+### Explorando 100 mil pedidos da Olist | 2016 a 2018
 
 [![Python](https://img.shields.io/badge/Python-3.11+-blue?logo=python)](https://www.python.org/)
 [![Pandas](https://img.shields.io/badge/Pandas-2.2-150458?logo=pandas)](https://pandas.pydata.org/)
@@ -14,7 +14,7 @@
 
 Este projeto surgiu de uma curiosidade: **o que os dados de uma plataforma brasileira de e-commerce revelam sobre comportamento de compra, logística e satisfação dos clientes?**
 
-A partir do dataset público da Olist (disponível no Kaggle), construí um pipeline completo de análise — da limpeza dos dados brutos até a segmentação de clientes com K-Means — usando Python como ferramenta principal.
+A partir do dataset público da Olist (disponível no Kaggle), construí um pipeline completo de análise, da limpeza dos dados brutos até a segmentação de clientes com K-Means, usando Python como ferramenta principal.
 
 O objetivo não é só responder perguntas analíticas, mas demonstrar um fluxo de trabalho organizado: código modularizado em `src/`, ETL reproduzível, visualizações padronizadas e análises com storytelling.
 
@@ -23,7 +23,7 @@ O objetivo não é só responder perguntas analíticas, mas demonstrar um fluxo 
 ## Perguntas que Este Projeto Responde
 
 - Quais clientes estão prestes a abandonar a plataforma?
-- Quais categorias de produto geram mais receita — e mais satisfação?
+- Quais categorias de produto geram mais receita e mais satisfação?
 - O atraso na entrega realmente derruba a avaliação do vendedor?
 - Como segmentar a base de clientes para campanhas de retenção?
 
@@ -31,15 +31,15 @@ O objetivo não é só responder perguntas analíticas, mas demonstrar um fluxo 
 
 ## Principais Insights
 
-**O atraso na entrega derruba a nota — e o efeito é de limiar.** Pedidos entregues no prazo têm nota média 4,29; atrasados, 2,46. Chegar adiantado quase não muda a nota, mas a partir de 4 dias de atraso a média cai para perto de 2. Parte dessa queda, porém, é "o pedido ainda não chegou": dois terços dos clientes com pedido atrasado avaliaram antes de receber (nota média 1,84). Entre os que avaliaram depois de receber, a diferença para quem recebeu no prazo é de cerca de 0,6 ponto (3,69 × 4,29).
+**O atraso na entrega derruba a nota, e o efeito é de limiar.** Pedidos entregues no prazo têm nota média 4,29; atrasados, 2,46. Chegar adiantado quase não muda a nota, mas a partir de 4 dias de atraso a média cai para perto de 2. Parte dessa queda, porém, é "o pedido ainda não chegou": dois terços dos clientes com pedido atrasado avaliaram antes de receber (nota média 1,84). Entre os que avaliaram depois de receber, a diferença para quem recebeu no prazo é de cerca de 0,6 ponto (3,69 × 4,29).
 
 ![Nota média por faixa de atraso](reports/figures/06_atraso_vs_nota.png)
 
 - **Receita:** R$ 13,2 milhões em pedidos entregues (sem frete). A receita cresceu ao longo de 2017 e se estabilizou entre R$ 0,8 e R$ 1 milhão por mês em 2018, com pico na Black Friday de novembro de 2017. Cartão de crédito responde por 76,6% dos pedidos.
 - **Clientes:** 97% dos 93 mil clientes compraram uma única vez. SP, RJ e MG concentram dois terços dos pedidos, e os 20% clientes de maior valor somam 56,6% da receita.
-- **Segmentação RFM:** um terço da base (*Recentes de alto valor*) gera 61,5% da receita — e é o grupo com a nota mais baixa (4,07). Os *Inativos* (29% dos clientes, última compra há mais de um ano em média) ainda somam 22,6% da receita histórica.
+- **Segmentação RFM:** um terço da base (*Recentes de alto valor*) gera 61,5% da receita e é o grupo com a nota mais baixa (4,07). Os *Inativos* (29% dos clientes, última compra há mais de um ano em média) ainda somam 22,6% da receita histórica.
 - **Entrega:** o prazo prometido é folgado (mediana de 23 dias contra 10 reais), e mesmo assim 7,6% dos pedidos atrasam. Os piores estados em pontualidade são AL (77%) e MA (81%); os piores meses, fevereiro e março de 2018.
-- **Vendedores:** os 20% maiores vendedores fazem 82% da receita. Quando o vendedor posta o pacote fora do prazo, a chance de o cliente receber atrasado sobe de 6% para 23% — mas cerca de 73% dos atrasos acontecem mesmo com a postagem em dia.
+- **Vendedores:** os 20% maiores vendedores fazem 82% da receita. Quando o vendedor posta o pacote fora do prazo, a chance de o cliente receber atrasado sobe de 6% para 23%. Mesmo assim, cerca de 73% dos atrasos acontecem mesmo com a postagem em dia.
 
 ![Segmentos RFM](reports/figures/05_segmentos_rfm.png)
 
@@ -49,10 +49,10 @@ O objetivo não é só responder perguntas analíticas, mas demonstrar um fluxo 
 
 | | |
 |---|---|
-| **Fonte** | [Brazilian E-Commerce Public Dataset by Olist — Kaggle](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce) |
+| **Fonte** | [Brazilian E-Commerce Public Dataset by Olist (Kaggle)](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce) |
 | **Licença** | CC BY-NC-SA 4.0 |
 | **Volume** | ~100k pedidos, 9 tabelas relacionais |
-| **Período** | Set/2016 – Out/2018 (pedidos entregues até Ago/2018) |
+| **Período** | Set/2016 a Out/2018 (pedidos entregues até Ago/2018) |
 
 ---
 
@@ -95,7 +95,7 @@ olist-ecommerce-analysis/
 Primeira passagem pelos dados: schema relacional dos 9 datasets, estatísticas descritivas, distribuição de nulos e outliers.
 
 ### 2. Limpeza & Enriquecimento (`02_limpeza_e_enriquecimento.ipynb`)
-ETL completo — tipagem de datas, tratamento de nulos, feature engineering (dias de entrega, atraso, valor total) e merge de todas as tabelas numa fact table central.
+ETL completo: tipagem de datas, tratamento de nulos, feature engineering (dias de entrega, atraso, valor total) e merge de todas as tabelas numa fact table central.
 
 ### 3. Análise de Receita (`03_analise_receita.ipynb`)
 Evolução mensal do GMV, top categorias, ticket médio por método de pagamento e sazonalidade semanal. Inclui consultas SQL (DuckDB) com `LAG`, `RANK` e `SUM OVER` para crescimento mês a mês, ranking de categorias por trimestre e concentração da receita.
@@ -104,7 +104,7 @@ Evolução mensal do GMV, top categorias, ticket médio por método de pagamento
 Mapa de pedidos por estado, padrão de compra por hora/dia, taxa de recompra, LTV básico e novos clientes por mês.
 
 ### 5. Segmentação RFM com K-Means (`05_segmentacao_rfm.ipynb`)
-Cálculo de Recência, Frequência e Valor Monetário por cliente. K escolhido com método do cotovelo e coeficiente de silhueta (k=4), resultando nos segmentos: Recorrentes, Recentes de alto valor, Recentes de baixo valor e Inativos — com uma ação sugerida para cada um.
+Cálculo de Recência, Frequência e Valor Monetário por cliente. K escolhido com método do cotovelo e coeficiente de silhueta (k=4), resultando nos segmentos: Recorrentes, Recentes de alto valor, Recentes de baixo valor e Inativos, com uma ação sugerida para cada um.
 
 ### 6. Análise de Entregas (`06_analise_entregas.ipynb`)
 Prazo real × prometido, pontualidade por estado e por mês, e o efeito do atraso na nota (teste de Mann-Whitney e análise por faixas de atraso).
@@ -115,7 +115,7 @@ Concentração de receita, impacto da postagem atrasada pelo vendedor, score com
 ![Score de vendedores](reports/figures/07_score_vendedores.png)
 
 ### Dashboard (`dashboard/app.py`)
-Quatro abas — visão geral, clientes (RFM), entregas e vendedores — com filtros de período e estado.
+Quatro abas (visão geral, clientes RFM, entregas e vendedores) com filtros de período e estado.
 
 ---
 
@@ -181,16 +181,16 @@ pytest tests
 
 - [x] Estrutura do projeto e configuração
 - [x] Módulos `src/` (loader, cleaner, visualizations)
-- [x] Notebook 01 — Exploração inicial
-- [x] Notebook 02 — Limpeza e ETL
-- [x] Notebook 03 — Análise de receita
-- [x] Notebook 04 — Análise de clientes
-- [x] Notebook 05 — Segmentação RFM
-- [x] Notebook 06 — Análise de entregas
-- [x] Notebook 07 — Performance de vendedores
+- [x] Notebook 01: Exploração inicial
+- [x] Notebook 02: Limpeza e ETL
+- [x] Notebook 03: Análise de receita
+- [x] Notebook 04: Análise de clientes
+- [x] Notebook 05: Segmentação RFM
+- [x] Notebook 06: Análise de entregas
+- [x] Notebook 07: Performance de vendedores
 - [x] Dashboard Streamlit
 - [x] Testes unitários
 
 ---
 
-*Projeto de portfólio — Análise de Dados com Python*
+*Projeto de portfólio de Análise de Dados com Python*
