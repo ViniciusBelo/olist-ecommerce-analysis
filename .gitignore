@@ -29,6 +29,10 @@ data/processed/*.pkl
 reports/figures/*.png
 reports/figures/*.html
 reports/figures/*.svg
+# Gráficos usados no README
+!reports/figures/05_segmentos_rfm.png
+!reports/figures/06_atraso_vs_nota.png
+!reports/figures/07_score_vendedores.png
 
 # Ambiente
 .env
